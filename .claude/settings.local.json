@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \":*)",
+      "Bash(pip install:*)",
+      "Bash(curl -s -X POST \"http://localhost:8000/api/upload\" -F \"file=@../documents/nexora_it_security_policy.docx\")",
+      "Bash(curl -s -X POST \"http://localhost:8000/api/chat\" -H \"Content-Type: application/json\" -d \"{\"\"query\"\": \"\"What is Nexora''s security policy?\"\"}\")",
+      "Bash(rm -rf faiss_index)",
+      "Bash(npx tsc:*)",
+      "Bash(npm run:*)",
+      "Bash(npm install:*)"
+    ]
+  }
+}
