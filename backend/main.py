@@ -8,11 +8,10 @@ load_dotenv()
 app = FastAPI(title="VAULTIQ API", version="1.0.0")
 
 # Security and CORS
-origins = [
-    "http://localhost",
-    "http://localhost:5173", # Vite dev server
-    "http://localhost:80",
-]
+default_origins = "http://localhost,http://localhost:5173"
+origins = os.getenv("CORS_ORIGINS", default_origins).split(",")
+origins = [o.strip() for o in origins if o.strip()]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,

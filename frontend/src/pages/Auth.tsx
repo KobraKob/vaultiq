@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { supabase } from '../lib/supabase'
-import { LogIn, Shield, Eye, EyeOff } from 'lucide-react'
+import { LogIn, Shield, Eye, EyeOff, Zap } from 'lucide-react'
 
 export default function Auth({ onLogin }: { onLogin: () => void }) {
   const [email, setEmail] = useState('')
@@ -14,6 +14,13 @@ export default function Auth({ onLogin }: { onLogin: () => void }) {
     e.preventDefault()
     setLoading(true)
     setError(null)
+
+    // Demo credentials bypass — no Supabase needed
+    if (email === 'demo@nexora.com' && password === 'Demo@1234') {
+      onLogin()
+      setLoading(false)
+      return
+    }
 
     try {
       if (mode === 'signup') {
@@ -33,9 +40,12 @@ export default function Auth({ onLogin }: { onLogin: () => void }) {
     }
   }
 
-  const handleDemoLogin = () => {
-    onLogin()
+  const handleTryDemo = () => {
+    setEmail('demo@nexora.com')
+    setPassword('Demo@1234')
+    setError(null)
   }
+
 
   return (
     <div className="min-h-screen bg-gray-950 flex items-center justify-center p-4">
@@ -133,11 +143,15 @@ export default function Auth({ onLogin }: { onLogin: () => void }) {
 
           <button
             type="button"
-            onClick={handleDemoLogin}
-            className="w-full py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-200"
+            onClick={handleTryDemo}
+            className="w-full py-3 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 flex items-center justify-center gap-2 transition-all duration-200 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/30 active:scale-[0.98]"
           >
-            Continue with Demo Mode
+            <Zap className="w-4 h-4" />
+            Try Demo
           </button>
+          <p className="text-[10px] text-slate-600 text-center -mt-2">
+            Pre-loaded with Nexora Technologies docs — click, then sign in
+          </p>
         </div>
 
         <p className="text-center text-[10px] text-slate-600 mt-6">

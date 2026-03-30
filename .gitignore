@@ -19,9 +19,9 @@ __pycache__/
 .pytest_cache/
 
 # RAG / Data
-backend/faiss_index/
 backend/temp/
 documents/
+!backend/documents/
 
 # Build outputs
 dist/

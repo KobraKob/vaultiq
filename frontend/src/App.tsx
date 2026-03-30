@@ -123,7 +123,7 @@ export default function App() {
     setSession(null)
   }
 
-  if (loading && !isDemoMode) {
+  if (loading) {
     return (
       <div className="min-h-screen bg-gray-950 flex items-center justify-center">
         <div className="flex items-center gap-3">
@@ -134,7 +134,7 @@ export default function App() {
     )
   }
 
-  if (!session && !isDemoMode) {
+  if (!session) {
     return <Auth onLogin={() => setSession({ user: { email: 'demo@nexora.com' } })} />
   }
 
