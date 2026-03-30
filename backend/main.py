@@ -8,7 +8,10 @@ load_dotenv()
 app = FastAPI(title="VAULTIQ API", version="1.0.0")
 
 # Security and CORS
-default_origins = "http://localhost,http://localhost:5173"
+default_origins = [
+    "http://localhost,http://localhost:5173"
+    "https://balavanth-vaultiq-backend.hf.space/"
+]
 origins = os.getenv("CORS_ORIGINS", default_origins).split(",")
 origins = [o.strip() for o in origins if o.strip()]
 
