@@ -11,7 +11,7 @@ app = FastAPI(title="VAULTIQ API", version="1.0.0")
 default_origins = [
     "http://localhost",
     "http://localhost:5173",
-    "https://balavanth-vaultiq-backend.hf.space"
+    "https://vaultiq-five.vercel.app",
 ]
 
 # Read from environment
